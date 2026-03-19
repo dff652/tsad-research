@@ -1,0 +1,104 @@
+# Benchmark 算法注册表
+# 每个算法独立 conda 环境，通过 subprocess 调用适配器脚本
+
+data:
+  # ADTK+HBOS 已有推理结果目录（436 个 CSV）
+  adtk_hbos_precomputed: "../data/adtk_hbos_old"
+  # 已评分的 100 个点位列表
+  evaluated_points: "../data/cleaned/evaluated_points.txt"
+  # 人工评分数据
+  scores_csv: "../data/cleaned/scores_analysis.csv"
+  # 全量特征
+  all_features: "../data/features/all_points_features.csv"
+  # 评分+特征关联
+  merged_scores_features: "../data/features/merged_scores_features.csv"
+
+output:
+  results_dir: "../results"
+  predictions_dir: "../results/predictions"
+
+algorithms:
+  adtk_hbos:
+    name: "ADTK+HBOS"
+    type: "statistical"
+    conda_env: "ts-iteration-loop"
+    adapter: "adapters/adtk_hbos_adapter.py"
+    # ADTK 已有预计算结果，直接读取不需要重新推理
+    precomputed: true
+    source: "/home/douff/ts/ts-iteration-loop/services/inference/adtk_hbos_detect.py"
+
+  timer:
+    name: "Timer-84M"
+    type: "tsfm"
+    conda_env: "timer"
+    adapter: "adapters/timer_adapter.py"
+    precomputed: false
+    model_path: "/home/share/llm_models/thuml/timer-base-84m"
+    source: "/home/douff/ts/ts-iteration-loop/services/inference/timer_detect.py"
+    gpu_required: true
+
+  chatts:
+    name: "ChatTS-14B"
+    type: "llm"
+    conda_env: "chatts"
+    adapter: "adapters/chatts_adapter.py"
+    precomputed: false
+    model_path: "/home/share/llm_models/bytedance-research/ChatTS-14B"
+    source: "/home/douff/ts/ts-iteration-loop/services/inference/chatts_detect.py"
+    gpu_required: true
+
+  sundial:
+    name: "Sundial-128M"
+    type: "tsfm"
+    conda_env: "timer"
+    adapter: "adapters/timer_adapter.py"
+    precomputed: false
+    model_path: "/home/share/llm_models/thuml/sundial-base-128m"
+    source: "/home/douff/ts/ts-iteration-loop/services/inference/timer_detect.py"
+    gpu_required: true
+
+  qwen_vl:
+    name: "Qwen-VL-8B"
+    type: "vlm"
+    conda_env: "qwen_tune"
+    adapter: "adapters/qwen_adapter.py"
+    precomputed: false
+    model_path: "/home/share/llm_models/Qwen/Qwen-VL-Chat"
+    source: "/home/douff/ts/ts-iteration-loop/services/inference/qwen_detect.py"
+    gpu_required: true
+
+# 标准输出格式：每个算法的推理结果 CSV 必须包含以下列
+standard_output_columns:
+  - "Time"           # 时间戳
+  - "value"          # 原始传感器值
+  - "global_mask"    # 全局异常标记 0/1
+  - "outlier_mask"   # 离群异常标记 0/1
+  - "local_mask"     # 局部异常标记 0/1
+
+# 评估指标配置
+evaluation:
+  # 维度A：主观经验拟合（100 评分点）
+  dimension_a:
+    description: "拟合工业专家打分的能力"
+    metrics:
+      - "mean_score"           # 模型评分均值
+      - "median_score"         # 中位分
+      - "pass_rate"            # 通过率 ≥ 0.5
+      - "good_rate"            # 良好率 = 1
+      - "bad_rate"             # 差评率 = 0
+      - "fleiss_kappa"         # 评审一致性
+
+  # 维度B：物理常识约束（436 全量点）
+  dimension_b:
+    description: "物理合理性检验"
+    metrics:
+      - "mean_anomaly_rate"       # 平均异常率（过高=乱叫）
+      - "anomaly_rate_std"        # 异常率标准差
+      - "max_anomaly_rate"        # 最大异常率（极端值过滤）
+      - "temporal_stickiness"     # 时序粘性：异常应具有连续性
+      - "jump_ratio"              # 跳变率：异常标记不应频繁 0/1 切换
+      - "cluster_coherence"       # 异常簇连贯性
+    constraints:
+      max_mean_anomaly_rate: 0.15   # 平均异常率不超过 15%
+      min_mean_anomaly_rate: 0.001  # 至少检测到一些异常
+      max_jump_ratio: 0.3           # 跳变率不超过 30%
