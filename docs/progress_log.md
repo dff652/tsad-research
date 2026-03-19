@@ -140,7 +140,42 @@ tsad-research/
 └── scripts/                     # 数据处理脚本（已有）
 ```
 
-### 六、Git 提交记录
+### 七、2026-03-20 新增研发内容
+
+#### Qwen3-VL Grounding 数据集（目标检测范式）
+
+将时序异常检测转化为图像目标检测：
+- 训练集：337 张时序图 + 2638 个异常 bbox（`qwen/dataset/`）
+- 测试集：99 张时序图 + 968 个异常 bbox
+- 坐标系：Qwen3-VL 相对坐标 0-1000，`bbox_2d: [x1, y1, x2, y2]`
+- 异常类型标签：spike / level_shift_up / level_shift_down / variance_change / trend_drift / anomaly_segment
+
+#### 新方法评测
+
+| 算法 | 类型 | 预测均分 | 通过率 | 特点 |
+|------|------|---------|--------|------|
+| MOMENT-1-large | TSFM 重建 | 0.500 | 100% | 异常率 0.03%，过于保守 |
+| ChatTS-14B | LLM 文本 | 0.542 | 73.7% | 24 个零异常点位，漏检严重 |
+| OpenCV Edge | CV 边缘 | 0.488 | 91.9% | 仅检测跳变，0.5s/点 |
+| TransformerKL | 自监督 | 测试中 | - | 噪声先验+注意力KL |
+
+#### 完整 19 方法排名（含所有范式）
+
+| 排名 | 算法 | 预测均分 | 范式 |
+|------|------|---------|------|
+| 1 | Timer-84M | 0.764 | 预测→残差 |
+| 2 | Weighted Ensemble | 0.717 | 集成 |
+| 3 | IForest | 0.670 | 统计 |
+| 4 | Voting Ensemble | 0.617 | 集成 |
+| 5 | ADTK+HBOS | 0.586 | 统计 |
+| 6 | ChatTS-14B | 0.542 | LLM |
+| 7 | IQR | 0.529 | 统计 |
+| 8 | MOMENT-1-large | 0.500 | TSFM 重建 |
+| 9 | MAD | 0.498 | 统计 |
+| 10 | OpenCV Edge | 0.488 | 计算机视觉 |
+| 11 | 3-Sigma | 0.436 | 统计 |
+
+### 八、Git 提交记录
 
 ```
 ffa5231 feat: integrate ChatTS, Qwen-VL, and MOMENT into benchmark pipeline
