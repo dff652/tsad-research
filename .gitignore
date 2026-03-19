@@ -1,0 +1,52 @@
+# Data & ML
+data/*
+!data/.gitkeep
+*.csv
+*.xlsx
+*.xlsm
+*.json
+# 保留文档区和代码区的脚本，但忽略数据或结果的大型产出
+# 如果想把轻量级 json/md 结果传上去，可以针对特定的 results 目录例外处理
+!results/model_ranking.md
+!results/comprehensive_evaluation_report.json
+
+# Keys and Secrets
+.env
+.env.*
+secret*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+venv.bak/
+ENV/
+env/
+.conda
+.venv
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo

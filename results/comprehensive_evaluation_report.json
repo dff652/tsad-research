@@ -1,0 +1,179 @@
+{
+  "data_overview": {
+    "total_evaluated_points": 100,
+    "total_csv_points": 436,
+    "matched_points": 99,
+    "reviewers": 5,
+    "models": 3
+  },
+  "model_report": {
+    "Qwen-VL-8B": {
+      "mean_score": 0.225,
+      "median_score": 0.0,
+      "std_score": 0.3576,
+      "score_distribution": {
+        "score_0": 341,
+        "score_0.5": 93,
+        "score_1": 66
+      },
+      "score_0_rate": 0.682,
+      "score_0.5_rate": 0.186,
+      "score_1_rate": 0.132,
+      "pass_rate": 0.318
+    },
+    "ChatTS": {
+      "mean_score": 0.336,
+      "median_score": 0.0,
+      "std_score": 0.377,
+      "score_distribution": {
+        "score_0": 251,
+        "score_0.5": 162,
+        "score_1": 87
+      },
+      "score_0_rate": 0.502,
+      "score_0.5_rate": 0.324,
+      "score_1_rate": 0.174,
+      "pass_rate": 0.498
+    },
+    "Timer": {
+      "mean_score": 0.672,
+      "median_score": 1.0,
+      "std_score": 0.372,
+      "score_distribution": {
+        "score_0": 82,
+        "score_0.5": 164,
+        "score_1": 254
+      },
+      "score_0_rate": 0.164,
+      "score_0.5_rate": 0.328,
+      "score_1_rate": 0.508,
+      "pass_rate": 0.836
+    }
+  },
+  "reviewer_consistency": {
+    "Qwen-VL-8B": {
+      "fleiss_kappa": 0.3456,
+      "avg_pairwise_agreement": 0.684
+    },
+    "ChatTS": {
+      "fleiss_kappa": 0.3292,
+      "avg_pairwise_agreement": 0.589
+    },
+    "Timer": {
+      "fleiss_kappa": 0.1752,
+      "avg_pairwise_agreement": 0.499
+    }
+  },
+  "category_analysis": {
+    "good": {
+      "count": 67,
+      "Qwen-VL-8B": 0.2343,
+      "ChatTS": 0.3507,
+      "Timer": 0.7149
+    },
+    "inconsistent_labeling": {
+      "count": 7,
+      "Qwen-VL-8B": 0.1714,
+      "ChatTS": 0.2143,
+      "Timer": 0.6
+    },
+    "under_detection": {
+      "count": 4,
+      "Qwen-VL-8B": 0.125,
+      "ChatTS": 0.1,
+      "Timer": 0.6
+    },
+    "missed_detection": {
+      "count": 4,
+      "Qwen-VL-8B": 0.325,
+      "ChatTS": 0.375,
+      "Timer": 0.7
+    },
+    "partial_detection": {
+      "count": 3,
+      "Qwen-VL-8B": 0.0667,
+      "ChatTS": 0.2,
+      "Timer": 0.6667
+    },
+    "over_detection": {
+      "count": 4,
+      "Qwen-VL-8B": 0.25,
+      "ChatTS": 0.575,
+      "Timer": 0.525
+    },
+    "false_positive_concern": {
+      "count": 3,
+      "Qwen-VL-8B": 0.3667,
+      "ChatTS": 0.4667,
+      "Timer": 0.7333
+    },
+    "unknown": {
+      "count": 7,
+      "Qwen-VL-8B": 0.1429,
+      "ChatTS": 0.2714,
+      "Timer": 0.4286
+    },
+    "normal": {
+      "count": 1,
+      "Qwen-VL-8B": 0.5,
+      "ChatTS": 0.5,
+      "Timer": 0.6
+    }
+  },
+  "sensor_type_analysis": {
+    "Analyzer": {
+      "count": 4,
+      "Qwen-VL-8B": 0.325,
+      "ChatTS": 0.3,
+      "Timer": 0.65
+    },
+    "Communication/System": {
+      "count": 1,
+      "Qwen-VL-8B": 0.9,
+      "ChatTS": 0.0,
+      "Timer": 0.0
+    },
+    "Current/Power": {
+      "count": 10,
+      "Qwen-VL-8B": 0.19,
+      "ChatTS": 0.23,
+      "Timer": 0.84
+    },
+    "Flow": {
+      "count": 16,
+      "Qwen-VL-8B": 0.3438,
+      "ChatTS": 0.325,
+      "Timer": 0.75
+    },
+    "Level": {
+      "count": 13,
+      "Qwen-VL-8B": 0.2077,
+      "ChatTS": 0.2385,
+      "Timer": 0.6923
+    },
+    "Pressure": {
+      "count": 11,
+      "Qwen-VL-8B": 0.2727,
+      "ChatTS": 0.3818,
+      "Timer": 0.7182
+    },
+    "Pump/Motor": {
+      "count": 17,
+      "Qwen-VL-8B": 0.1,
+      "ChatTS": 0.4529,
+      "Timer": 0.5353
+    },
+    "SOV/Discrete": {
+      "count": 3,
+      "Qwen-VL-8B": 0.3,
+      "ChatTS": 0.4667,
+      "Timer": 0.9
+    },
+    "Temperature": {
+      "count": 24,
+      "Qwen-VL-8B": 0.15,
+      "ChatTS": 0.3125,
+      "Timer": 0.6042
+    }
+  }
+}
