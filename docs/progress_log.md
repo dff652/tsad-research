@@ -194,6 +194,30 @@ tsad-research/
 - 再次尝试：GPU 被其他用户进程占用（GPU0: 44GB/xpj, GPU1: 42GB/xpj vLLM）
 - **状态：等待 GPU 释放后继续**
 
+#### 分层检测策略（已完成，无需 GPU）
+
+| 传感器类型 | Timer 评分 | 推荐 threshold_k | 理由 |
+|-----------|-----------|-----------------|------|
+| SOV/Discrete | 0.900 | 2.5 | 异常率极低，需敏感检测 |
+| Current/Power | 0.840 | 4.5 | 异常率极高，需严格过滤 |
+| Flow | 0.750 | 3.5 | 标准，Timer 高可靠 |
+| Pressure | 0.718 | 3.5 | 标准，Timer 高可靠 |
+| Level | 0.692 | 3.5 | 标准 |
+| Temperature | 0.604 | 3.5 | Timer 中等可靠 |
+| Pump/Motor | 0.535 | 3.5 | Timer 中等可靠 |
+
+#### Qwen3-VL Grounding 评估指标（微调前 baseline）
+
+| 指标 | 值 |
+|------|---|
+| Precision | 0.216 |
+| Recall | 0.306 |
+| F1 | 0.167 |
+| Mean IoU | 0.315 |
+| 预测 bbox | 685 |
+| GT bbox | 968 |
+| TP 匹配 | 74 |
+
 **Qwen3.5-27B 评估**：
 - 确认为多模态模型（有 vision_config）
 - 4-bit 量化仍需约 46GB，单卡 48GB 不够
