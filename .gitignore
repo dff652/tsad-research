@@ -66,3 +66,6 @@ env/
 qwen/lora_output/
 qwen/images/
 qwen/dataset/
+
+*.json
+*.jsonl 

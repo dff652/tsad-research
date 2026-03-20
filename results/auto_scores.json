@@ -47,12 +47,52 @@
     "pass_rate": 0.8518518518518519,
     "good_rate": 0.7407407407407407
   },
+  "freq_patch": {
+    "algorithm": "freq_patch",
+    "scored_points": 99,
+    "mean_predicted_score": 0.5,
+    "median_predicted_score": 0.5,
+    "pass_rate": 1.0,
+    "good_rate": 0.0
+  },
+  "freq_timer_fusion": {
+    "algorithm": "freq_timer_fusion",
+    "scored_points": 99,
+    "mean_predicted_score": 0.7626262626262627,
+    "median_predicted_score": 0.8,
+    "pass_rate": 0.9696969696969697,
+    "good_rate": 0.8383838383838383
+  },
   "gaf_convae": {
     "algorithm": "gaf_convae",
     "scored_points": 99,
     "mean_predicted_score": 0.5,
     "median_predicted_score": 0.5,
     "pass_rate": 1.0,
+    "good_rate": 0.0
+  },
+  "gaf_convae_mad": {
+    "algorithm": "gaf_convae_mad",
+    "scored_points": 99,
+    "mean_predicted_score": 0.502020202020202,
+    "median_predicted_score": 0.5,
+    "pass_rate": 0.98989898989899,
+    "good_rate": 0.0
+  },
+  "gaf_convae_p85": {
+    "algorithm": "gaf_convae_p85",
+    "scored_points": 99,
+    "mean_predicted_score": 0.51010101010101,
+    "median_predicted_score": 0.5,
+    "pass_rate": 1.0,
+    "good_rate": 0.0
+  },
+  "gaf_narrow": {
+    "algorithm": "gaf_narrow",
+    "scored_points": 99,
+    "mean_predicted_score": 0.4767676767676768,
+    "median_predicted_score": 0.5,
+    "pass_rate": 0.8888888888888888,
     "good_rate": 0.0
   },
   "iforest": {
@@ -166,5 +206,37 @@
     "median_predicted_score": 0.8,
     "pass_rate": 0.8,
     "good_rate": 0.8
+  },
+  "wavelet": {
+    "algorithm": "wavelet",
+    "scored_points": 99,
+    "mean_predicted_score": 0.5025252525252525,
+    "median_predicted_score": 0.5,
+    "pass_rate": 1.0,
+    "good_rate": 0.0
+  },
+  "wavelet_p80": {
+    "algorithm": "wavelet_p80",
+    "scored_points": 99,
+    "mean_predicted_score": 0.5580808080808081,
+    "median_predicted_score": 0.5,
+    "pass_rate": 1.0,
+    "good_rate": 0.0
+  },
+  "wavelet_sensitive": {
+    "algorithm": "wavelet_sensitive",
+    "scored_points": 99,
+    "mean_predicted_score": 0.6111111111111112,
+    "median_predicted_score": 0.5,
+    "pass_rate": 1.0,
+    "good_rate": 0.0
+  },
+  "wavelet_timer_fusion": {
+    "algorithm": "wavelet_timer_fusion",
+    "scored_points": 99,
+    "mean_predicted_score": 0.7671717171717172,
+    "median_predicted_score": 0.8,
+    "pass_rate": 0.9696969696969697,
+    "good_rate": 0.6363636363636364
   }
 }
