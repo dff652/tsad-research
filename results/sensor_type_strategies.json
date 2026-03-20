@@ -1,0 +1,97 @@
+{
+  "strategies": {
+    "Analyzer": {
+      "sensor_type": "Analyzer",
+      "n_points": 4,
+      "adtk_mean_rate": 0.00721375,
+      "timer_mean_rate": 0.03651025197523192,
+      "timer_human_score": 0.65,
+      "recommended_threshold_k": 3.5,
+      "recommended_method": "mad",
+      "note": "标准异常率范围，使用默认参数",
+      "timer_reliability": "medium"
+    },
+    "Current/Power": {
+      "sensor_type": "Current/Power",
+      "n_points": 10,
+      "adtk_mean_rate": 0.2782861,
+      "timer_mean_rate": 0.06953728751497731,
+      "timer_human_score": 0.8400000000000001,
+      "recommended_threshold_k": 4.5,
+      "recommended_method": "mad",
+      "note": "高基线异常率，需严格阈值过滤",
+      "timer_reliability": "high"
+    },
+    "Flow": {
+      "sensor_type": "Flow",
+      "n_points": 16,
+      "adtk_mean_rate": 0.044065437500000006,
+      "timer_mean_rate": 0.034187872543307754,
+      "timer_human_score": 0.75,
+      "recommended_threshold_k": 3.5,
+      "recommended_method": "mad",
+      "note": "标准异常率范围，使用默认参数",
+      "timer_reliability": "high"
+    },
+    "Level": {
+      "sensor_type": "Level",
+      "n_points": 13,
+      "adtk_mean_rate": 0.011004769230769231,
+      "timer_mean_rate": 0.02819435154305088,
+      "timer_human_score": 0.6923076923076923,
+      "recommended_threshold_k": 3.5,
+      "recommended_method": "mad",
+      "note": "标准异常率范围，使用默认参数",
+      "timer_reliability": "medium"
+    },
+    "Pressure": {
+      "sensor_type": "Pressure",
+      "n_points": 11,
+      "adtk_mean_rate": 0.042334818181818175,
+      "timer_mean_rate": 0.019120809171643032,
+      "timer_human_score": 0.7181818181818183,
+      "recommended_threshold_k": 3.5,
+      "recommended_method": "mad",
+      "note": "标准异常率范围，使用默认参数",
+      "timer_reliability": "high"
+    },
+    "Pump/Motor": {
+      "sensor_type": "Pump/Motor",
+      "n_points": 17,
+      "adtk_mean_rate": 0.09607188235294119,
+      "timer_mean_rate": 0.024666988036662632,
+      "timer_human_score": 0.5352941176470588,
+      "recommended_threshold_k": 3.5,
+      "recommended_method": "mad",
+      "note": "标准异常率范围，使用默认参数",
+      "timer_reliability": "medium"
+    },
+    "SOV/Discrete": {
+      "sensor_type": "SOV/Discrete",
+      "n_points": 3,
+      "adtk_mean_rate": 0.002891333333333333,
+      "timer_mean_rate": 0.003490478651626976,
+      "timer_human_score": 0.9,
+      "recommended_threshold_k": 2.5,
+      "recommended_method": "mad",
+      "note": "低基线异常率，需宽松阈值捕获细微异常",
+      "timer_reliability": "high"
+    },
+    "Temperature": {
+      "sensor_type": "Temperature",
+      "n_points": 24,
+      "adtk_mean_rate": 0.07500966666666666,
+      "timer_mean_rate": 0.0343318408646757,
+      "timer_human_score": 0.6041666666666666,
+      "recommended_threshold_k": 3.5,
+      "recommended_method": "mad",
+      "note": "标准异常率范围，使用默认参数",
+      "timer_reliability": "medium"
+    }
+  },
+  "summary": {
+    "total_types": 8,
+    "high_rate_types": 1,
+    "low_rate_types": 1
+  }
+}

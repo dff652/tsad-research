@@ -1,0 +1,18 @@
+[
+  {
+    "conversations": [
+      {
+        "from": "user",
+        "value": "<image>\nLocate all anomaly ranges in this image visually and output the bbox coordinates in JSON format using relative coordinates in the range [0, 1024]."
+      },
+      {
+        "from": "assistant",
+        "value": "{\"objects\": [{\"bbox_2d\": [110.819, 0.0, 112.048, 512.0]}, {\"bbox_2d\": [88.901, 0.0, 91.974, 512.0]}, {\"bbox_2d\": [737.632, 0.0, 739.886, 512.0]}, {\"bbox_2d\": [733.331, 0.0, 735.789, 512.0]}, {\"bbox_2d\": [761.189, 0.0, 763.033, 512.0]}, {\"bbox_2d\": [995.527, 0.0, 997.576, 512.0]}, {\"bbox_2d\": [1008.842, 0.0, 1014.987, 512.0]}]}"
+      }
+    ],
+    "images": [
+      "tpt_mllm_data_1024_512/iotdb_gdsh_2501FI10021.PV_full.png"
+    ]
+  },
+  ......
+]

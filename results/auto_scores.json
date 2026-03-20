@@ -1,0 +1,170 @@
+{
+  "3sigma": {
+    "algorithm": "3sigma",
+    "scored_points": 99,
+    "mean_predicted_score": 0.4358585858585859,
+    "median_predicted_score": 0.45,
+    "pass_rate": 0.40404040404040403,
+    "good_rate": 0.21212121212121213
+  },
+  "adtk_hbos": {
+    "algorithm": "adtk_hbos",
+    "scored_points": 99,
+    "mean_predicted_score": 0.5863636363636365,
+    "median_predicted_score": 0.7000000000000001,
+    "pass_rate": 0.6666666666666666,
+    "good_rate": 0.06060606060606061
+  },
+  "chatts": {
+    "algorithm": "chatts",
+    "scored_points": 99,
+    "mean_predicted_score": 0.5419191919191921,
+    "median_predicted_score": 0.65,
+    "pass_rate": 0.7373737373737373,
+    "good_rate": 0.0
+  },
+  "ensemble_cascade": {
+    "algorithm": "ensemble_cascade",
+    "scored_points": 27,
+    "mean_predicted_score": 0.4425925925925926,
+    "median_predicted_score": 0.4,
+    "pass_rate": 0.37037037037037035,
+    "good_rate": 0.1111111111111111
+  },
+  "ensemble_voting": {
+    "algorithm": "ensemble_voting",
+    "scored_points": 27,
+    "mean_predicted_score": 0.6166666666666666,
+    "median_predicted_score": 0.75,
+    "pass_rate": 0.7037037037037037,
+    "good_rate": 0.3333333333333333
+  },
+  "ensemble_weighted": {
+    "algorithm": "ensemble_weighted",
+    "scored_points": 27,
+    "mean_predicted_score": 0.7166666666666669,
+    "median_predicted_score": 0.8,
+    "pass_rate": 0.8518518518518519,
+    "good_rate": 0.7407407407407407
+  },
+  "gaf_convae": {
+    "algorithm": "gaf_convae",
+    "scored_points": 99,
+    "mean_predicted_score": 0.5,
+    "median_predicted_score": 0.5,
+    "pass_rate": 1.0,
+    "good_rate": 0.0
+  },
+  "iforest": {
+    "algorithm": "iforest",
+    "scored_points": 99,
+    "mean_predicted_score": 0.6702020202020202,
+    "median_predicted_score": 0.8,
+    "pass_rate": 0.7777777777777778,
+    "good_rate": 0.5050505050505051
+  },
+  "iqr": {
+    "algorithm": "iqr",
+    "scored_points": 99,
+    "mean_predicted_score": 0.5292929292929294,
+    "median_predicted_score": 0.5,
+    "pass_rate": 0.5555555555555556,
+    "good_rate": 0.36363636363636365
+  },
+  "mad": {
+    "algorithm": "mad",
+    "scored_points": 99,
+    "mean_predicted_score": 0.4984848484848485,
+    "median_predicted_score": 0.45,
+    "pass_rate": 0.47474747474747475,
+    "good_rate": 0.30303030303030304
+  },
+  "moment": {
+    "algorithm": "moment",
+    "scored_points": 99,
+    "mean_predicted_score": 0.5,
+    "median_predicted_score": 0.5,
+    "pass_rate": 1.0,
+    "good_rate": 0.0
+  },
+  "opencv_edge": {
+    "algorithm": "opencv_edge",
+    "scored_points": 99,
+    "mean_predicted_score": 0.4883838383838384,
+    "median_predicted_score": 0.5,
+    "pass_rate": 0.9191919191919192,
+    "good_rate": 0.0
+  },
+  "qwen3vl_8b_finetuned": {
+    "algorithm": "qwen3vl_8b_finetuned",
+    "scored_points": 99,
+    "mean_predicted_score": 0.4474747474747476,
+    "median_predicted_score": 0.35,
+    "pass_rate": 0.43434343434343436,
+    "good_rate": 0.0
+  },
+  "qwen3vl_8b_zero": {
+    "algorithm": "qwen3vl_8b_zero",
+    "scored_points": 99,
+    "mean_predicted_score": 0.4459595959595961,
+    "median_predicted_score": 0.35,
+    "pass_rate": 0.42424242424242425,
+    "good_rate": 0.0
+  },
+  "sundial": {
+    "algorithm": "sundial",
+    "scored_points": 4,
+    "mean_predicted_score": 0.7250000000000001,
+    "median_predicted_score": 0.8,
+    "pass_rate": 1.0,
+    "good_rate": 0.75
+  },
+  "timer": {
+    "algorithm": "timer",
+    "scored_points": 99,
+    "mean_predicted_score": 0.764141414141414,
+    "median_predicted_score": 0.8,
+    "pass_rate": 0.9494949494949495,
+    "good_rate": 0.8787878787878788
+  },
+  "timer_k2.5_mad_lb256_ds10000": {
+    "algorithm": "timer_k2.5_mad_lb256_ds10000",
+    "scored_points": 10,
+    "mean_predicted_score": 0.76,
+    "median_predicted_score": 0.8,
+    "pass_rate": 0.9,
+    "good_rate": 0.9
+  },
+  "timer_k3.0_mad_lb256_ds10000": {
+    "algorithm": "timer_k3.0_mad_lb256_ds10000",
+    "scored_points": 10,
+    "mean_predicted_score": 0.76,
+    "median_predicted_score": 0.8,
+    "pass_rate": 0.9,
+    "good_rate": 0.9
+  },
+  "timer_k3.5_mad_lb256_ds10000": {
+    "algorithm": "timer_k3.5_mad_lb256_ds10000",
+    "scored_points": 10,
+    "mean_predicted_score": 0.76,
+    "median_predicted_score": 0.8,
+    "pass_rate": 0.9,
+    "good_rate": 0.9
+  },
+  "timer_k4.0_mad_lb256_ds10000": {
+    "algorithm": "timer_k4.0_mad_lb256_ds10000",
+    "scored_points": 10,
+    "mean_predicted_score": 0.7550000000000001,
+    "median_predicted_score": 0.8,
+    "pass_rate": 0.9,
+    "good_rate": 0.8
+  },
+  "timer_k5.0_mad_lb256_ds10000": {
+    "algorithm": "timer_k5.0_mad_lb256_ds10000",
+    "scored_points": 10,
+    "mean_predicted_score": 0.7250000000000001,
+    "median_predicted_score": 0.8,
+    "pass_rate": 0.8,
+    "good_rate": 0.8
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "timer_feature_correlations": {
+    "timer_anomaly_rate": 0.03950847274229297,
+    "timer_anomaly_count": 0.07642228472342476,
+    "timer_num_clusters": -0.2420788760402694,
+    "timer_avg_cluster_len": 0.05436572920727907,
+    "timer_max_cluster_len": 0.15611766328178475,
+    "timer_jump_ratio": -0.17484350885190902
+  },
+  "adtk_timer_correlations": {
+    "timer_anomaly_rate vs global_mask_ratio": 0.6858442142043083,
+    "timer_num_clusters vs num_anomaly_clusters": -0.0008793514782202308,
+    "timer_avg_cluster_len vs avg_cluster_length": 0.09761252541137894
+  },
+  "score_stratification": {
+    "high_mean_rate": 0.0297210567340054,
+    "low_mean_rate": 0.024564200537525536
+  },
+  "rate_diff_correlation": -0.19489412183782248
+}

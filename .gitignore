@@ -1,14 +1,22 @@
 # Data & ML
 data/*
 !data/.gitkeep
+!data/cleaned/evaluated_points.txt
+!data/cleaned/train_points.txt
 *.csv
 *.xlsx
 *.xlsm
-*.json
-# 保留文档区和代码区的脚本，但忽略数据或结果的大型产出
-# 如果想把轻量级 json/md 结果传上去，可以针对特定的 results 目录例外处理
+# 保留文档区和轻量级结果
 !results/model_ranking.md
 !results/comprehensive_evaluation_report.json
+
+# Large binary files
+*.pth
+*.bin
+*.safetensors
+*.png
+*.log
+*.jsonl
 
 # Keys and Secrets
 .env
@@ -36,6 +44,9 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+# 例外：benchmark/lib 是核心代码，不是依赖库
+!benchmark/lib/
+!benchmark/lib/**
 
 # Virtual environments
 venv/
@@ -50,3 +61,8 @@ env/
 .idea/
 *.swp
 *.swo
+
+# LoRA / Model outputs
+qwen/lora_output/
+qwen/images/
+qwen/dataset/

@@ -1,0 +1,77 @@
+[
+  {
+    "tag": "k2.5_mad_lb256_ds10000",
+    "params": {
+      "threshold_k": 2.5,
+      "method": "mad",
+      "lookback_length": 256,
+      "n_downsample": 10000
+    },
+    "success": 10,
+    "total": 10,
+    "mean_rate": 0.09661400738807858,
+    "median_rate": 0.06643939343964853,
+    "elapsed": 583.9882915019989,
+    "score": 0.6
+  },
+  {
+    "tag": "k3.0_mad_lb256_ds10000",
+    "params": {
+      "threshold_k": 3.0,
+      "method": "mad",
+      "lookback_length": 256,
+      "n_downsample": 10000
+    },
+    "success": 10,
+    "total": 10,
+    "mean_rate": 0.07891793848599148,
+    "median_rate": 0.04245746585728232,
+    "elapsed": 582.4201426506042,
+    "score": 0.6
+  },
+  {
+    "tag": "k3.5_mad_lb256_ds10000",
+    "params": {
+      "threshold_k": 3.5,
+      "method": "mad",
+      "lookback_length": 256,
+      "n_downsample": 10000
+    },
+    "success": 10,
+    "total": 10,
+    "mean_rate": 0.06881504819219222,
+    "median_rate": 0.028108609244821343,
+    "elapsed": 579.0212285518646,
+    "score": 0.6
+  },
+  {
+    "tag": "k4.0_mad_lb256_ds10000",
+    "params": {
+      "threshold_k": 4.0,
+      "method": "mad",
+      "lookback_length": 256,
+      "n_downsample": 10000
+    },
+    "success": 10,
+    "total": 10,
+    "mean_rate": 0.06255375759308643,
+    "median_rate": 0.02070969432555192,
+    "elapsed": 580.5493590831757,
+    "score": 0.6
+  },
+  {
+    "tag": "k5.0_mad_lb256_ds10000",
+    "params": {
+      "threshold_k": 5.0,
+      "method": "mad",
+      "lookback_length": 256,
+      "n_downsample": 10000
+    },
+    "success": 10,
+    "total": 10,
+    "mean_rate": 0.0544624571477087,
+    "median_rate": 0.013125473649899154,
+    "elapsed": 574.8506147861481,
+    "score": 0.6
+  }
+]
