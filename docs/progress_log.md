@@ -234,7 +234,29 @@ tsad-research/
 - 4-bit 量化仍需约 46GB，单卡 48GB 不够
 - 当前条件下不可用
 
-### 九、Git 提交记录
+#### 论文调研成果（2026-03-20）
+
+调研 14 篇论文（6 个方向），详见 `docs/paper_survey.md`。
+
+**重点论文**：
+- CATCH (ICLR 2025)：频率域 Patching + 通道融合，已克隆代码
+- TSB-AutoAD (VLDB 2025)：自动化模型选择，SENSE 选择性集成
+- AXIS (2025)：LLM 可解释异常检测
+
+#### 新算法研发成果（2026-03-20）
+
+**★ 新 SOTA：Timer+Wavelet 融合 = 0.767（超越 Timer 单独 0.764）**
+
+| 方法 | 评分 | 通过率 | 原理 |
+|------|------|--------|------|
+| **Timer+Wavelet** | **0.767** | **97.0%** | Timer（趋势/上下文）+ 小波（高频尖峰）并集 |
+| Timer | 0.764 | 94.9% | 预测→残差 |
+| Timer+FreqPatch | 0.763 | 97.0% | Timer + FFT 频率 band 检测并集 |
+
+小波和频率 Patching 方法单独效果一般（0.5-0.6），但与 Timer 融合后互补提升——
+Timer 擅长趋势/上下文异常，小波/频率方法擅长高频尖峰/跳变。
+
+### 十、Git 提交记录
 
 ```
 ffa5231 feat: integrate ChatTS, Qwen-VL, and MOMENT into benchmark pipeline
