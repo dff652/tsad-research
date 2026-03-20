@@ -38,7 +38,7 @@ LEARNING_RATE = 2e-5
 NUM_EPOCHS = 3
 BATCH_SIZE = 1
 GRAD_ACCUM = 4
-MAX_SEQ_LEN = 2048
+MAX_SEQ_LEN = 1024
 DEVICE = "cuda:1"
 
 
@@ -78,6 +78,13 @@ class GroundingDataset(Dataset):
 
         # 加载图片
         image = Image.open(img_path).convert("RGB")
+
+        # 缩小图片（原 4000×800 太大，VLM tokens 爆显存）
+        max_side = 800
+        w, h = image.size
+        if max(w, h) > max_side:
+            scale = max_side / max(w, h)
+            image = image.resize((int(w * scale), int(h * scale)), Image.LANCZOS)
 
         return {
             "image": image,
@@ -123,6 +130,10 @@ def main():
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
 
+    # 启用 gradient checkpointing 节省显存
+    model.gradient_checkpointing_enable()
+    model.enable_input_require_grads()
+
     # 加载数据集
     dataset = GroundingDataset(TRAIN_DATA, IMAGES_DIR, processor)
 
@@ -143,6 +154,15 @@ def main():
             user_text = sample["user_text"]
             target_text = sample["assistant_text"]
 
+            # 截断过长的标注（限制最多 10 个 bbox）
+            try:
+                ann_list = json.loads(target_text)
+                if isinstance(ann_list, list) and len(ann_list) > 10:
+                    ann_list = ann_list[:10]
+                    target_text = json.dumps(ann_list, ensure_ascii=False)
+            except:
+                pass
+
             # 构造完整对话
             messages = [
                 {"role": "user", "content": [{"type": "image"}, {"type": "text", "text": user_text}]},
@@ -150,7 +170,8 @@ def main():
             ]
 
             text = processor.apply_chat_template(messages, tokenize=False)
-            inputs = processor(text=[text], images=[image], return_tensors="pt", padding=True)
+            inputs = processor(text=[text], images=[image], return_tensors="pt", padding=True,
+                               truncation=True, max_length=MAX_SEQ_LEN)
             inputs = {k: v.to(model.device) if hasattr(v, 'to') else v for k, v in inputs.items()}
 
             # 设置 labels（causal LM，只对 assistant 回复计算 loss）

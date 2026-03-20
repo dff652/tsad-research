@@ -175,7 +175,31 @@ tsad-research/
 | 10 | OpenCV Edge | 0.488 | 计算机视觉 |
 | 11 | 3-Sigma | 0.436 | 统计 |
 
-### 八、Git 提交记录
+#### Qwen3-VL Grounding 微调实验
+
+**微调数据**：
+- 来源：337 个训练集点位的 ADTK+HBOS 异常标注
+- 有异常标注的样本：223 个（114 个零异常跳过）
+- 标注格式：Qwen3-VL bbox_2d [x1,y1,x2,y2] (0-1000 相对坐标)
+- 异常类型：spike / level_shift_up / level_shift_down / variance_change / trend_drift
+
+**零样本 baseline（微调前）**：
+- Qwen3-VL-8B zero-shot: pred_score=0.446, 异常率 31.4%（严重过检）
+- 通过率 42.4%，每张图平均 6.9 个 bbox
+- 问题：bbox 过大，把正常波动也框进去
+
+**微调阻塞**：
+- 首次尝试：4000×800 大图导致 visual tokens 过多 → OOM
+- 修复：缩图至 800px + gradient_checkpointing + 截断标注
+- 再次尝试：GPU 被其他用户进程占用（GPU0: 44GB/xpj, GPU1: 42GB/xpj vLLM）
+- **状态：等待 GPU 释放后继续**
+
+**Qwen3.5-27B 评估**：
+- 确认为多模态模型（有 vision_config）
+- 4-bit 量化仍需约 46GB，单卡 48GB 不够
+- 当前条件下不可用
+
+### 九、Git 提交记录
 
 ```
 ffa5231 feat: integrate ChatTS, Qwen-VL, and MOMENT into benchmark pipeline
