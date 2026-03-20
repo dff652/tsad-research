@@ -22,7 +22,7 @@ import numpy as np
 import pandas as pd
 
 # 业务平台路径
-PLATFORM_INFERENCE = "/home/douff/ts/ts-iteration-loop/services/inference"
+PLATFORM_INFERENCE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "lib")
 sys.path.insert(0, PLATFORM_INFERENCE)
 
 
