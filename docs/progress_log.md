@@ -256,7 +256,41 @@ tsad-research/
 小波和频率 Patching 方法单独效果一般（0.5-0.6），但与 Timer 融合后互补提升——
 Timer 擅长趋势/上下文异常，小波/频率方法擅长高频尖峰/跳变。
 
-### 十、Git 提交记录
+#### 调研方向实验结果（2026-03-23）
+
+| 方法 | 来源论文 | 评分 | 结论 |
+|------|---------|------|------|
+| ChatTS LoRA | 已有权重 lora_sft_14B | 0.462 | 反而更差，零异常 24→40，LoRA 非 AD 任务 |
+| Teacher-Student | WACV 2023 思路 | 0.471 | Timer 标记的异常在统计特征上与正常无显著差异 |
+| TS2Vec 对比学习 | AAAI 2022 | 0.450-0.500 | CPU 训练不充分，需 GPU 深度训练 |
+| SENSE 选择性集成 | TSB-AutoAD VLDB 2025 | 0.764 | 智能路由有效但结果≈Timer（Timer 适用于绝大多数传感器） |
+
+**核心结论**：非 Timer 方向的独立方法均未超越 Timer。但**信号处理方法与 Timer 融合**（小波/频率 Patching）实现了 0.767 新 SOTA。
+
+### 十、最终排名（25+ 方法，37 次 commit）
+
+| # | 方法 | 评分 | 范式 |
+|---|------|------|------|
+| 1 | **Timer+Wavelet 融合** | **0.767** | 预测+信号处理 |
+| 2 | Timer-84M | 0.764 | 预测→残差 |
+| 3 | SENSE 选择性集成 | 0.764 | 智能路由 |
+| 4 | Timer+FreqPatch 融合 | 0.763 | 预测+频率域 |
+| 5 | Weighted Ensemble | 0.717 | 固定权重集成 |
+| 6 | IForest | 0.670 | 统计 |
+| 7 | Voting Ensemble | 0.617 | 投票集成 |
+| 8 | Wavelet Sensitive | 0.611 | 信号处理 |
+| 9 | ADTK+HBOS | 0.586 | 统计 |
+| 10 | ChatTS-14B | 0.542 | LLM |
+| 11 | IQR | 0.529 | 统计 |
+| 12 | MOMENT / GAF+ConvAE | 0.500 | TSFM 重建 |
+| 13 | OpenCV Edge | 0.488 | 计算机视觉 |
+| 14 | Teacher-Student | 0.471 | 伪标签 |
+| 15 | ChatTS LoRA | 0.462 | LLM 微调 |
+| 16 | TS2Vec | 0.450 | 对比学习 |
+| 17 | Qwen3-VL 微调 | 0.447 | VLM 目标检测 |
+| 18 | 3-Sigma | 0.436 | 统计 |
+
+### 十一、Git 提交记录
 
 ```
 ffa5231 feat: integrate ChatTS, Qwen-VL, and MOMENT into benchmark pipeline
