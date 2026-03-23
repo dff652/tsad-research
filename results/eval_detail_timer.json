@@ -1,0 +1,114 @@
+{
+  "algorithm": "Timer-84M",
+  "dimension_a": {
+    "algorithm": "Timer-84M",
+    "evaluated_points_total": 100,
+    "evaluated_points_matched": 99,
+    "mean_anomaly_rate": 0.07645987878787881,
+    "median_anomaly_rate": 0.006029,
+    "std_anomaly_rate": 0.16334653897668625,
+    "mean_stickiness": 25767.562929292933,
+    "mean_jump_ratio": 0.009715348482289849,
+    "mean_num_clusters": 36.73737373737374,
+    "zero_anomaly_points": 5
+  },
+  "dimension_b": {
+    "algorithm": "Timer-84M",
+    "total_points": 436,
+    "mean_anomaly_rate": 0.04675573165137614,
+    "median_anomaly_rate": 0.0032965,
+    "std_anomaly_rate": 0.122886357084854,
+    "max_anomaly_rate": 1.0,
+    "min_anomaly_rate": 0.0,
+    "mean_stickiness": 23840.219774011297,
+    "mean_jump_ratio": 0.013040318721653689,
+    "mean_num_clusters": 21.34633027522936,
+    "zero_anomaly_points": 82,
+    "high_anomaly_points": 55,
+    "constraint_violations": [],
+    "constraints_passed": true,
+    "by_sensor_type": {
+      "AC_Controller": {
+        "count": 10,
+        "mean_anomaly_rate": 0.09455910000000001,
+        "mean_cluster_len": 49638.240000000005
+      },
+      "Analyzer": {
+        "count": 30,
+        "mean_anomaly_rate": 0.006100166666666668,
+        "mean_cluster_len": 2142.289
+      },
+      "Communication/System": {
+        "count": 9,
+        "mean_anomaly_rate": 0.0013672222222222221,
+        "mean_cluster_len": 462.3044444444444
+      },
+      "Current/Power": {
+        "count": 21,
+        "mean_anomaly_rate": 0.2750934285714286,
+        "mean_cluster_len": 223954.18238095238
+      },
+      "Electrical": {
+        "count": 3,
+        "mean_anomaly_rate": 0.00298,
+        "mean_cluster_len": 795.91
+      },
+      "Flow": {
+        "count": 59,
+        "mean_anomaly_rate": 0.0182854406779661,
+        "mean_cluster_len": 4083.369152542373
+      },
+      "Level": {
+        "count": 40,
+        "mean_anomaly_rate": 0.00982495,
+        "mean_cluster_len": 7194.1225
+      },
+      "Motor/Control": {
+        "count": 13,
+        "mean_anomaly_rate": 0.04134515384615385,
+        "mean_cluster_len": 1097.3492307692309
+      },
+      "Pressure": {
+        "count": 60,
+        "mean_anomaly_rate": 0.01734565,
+        "mean_cluster_len": 6165.838333333333
+      },
+      "Pump/Motor": {
+        "count": 70,
+        "mean_anomaly_rate": 0.04855005714285714,
+        "mean_cluster_len": 6223.529857142857
+      },
+      "SOV/Discrete": {
+        "count": 14,
+        "mean_anomaly_rate": 0.0016805714285714286,
+        "mean_cluster_len": 1052.7385714285713
+      },
+      "Speed": {
+        "count": 1,
+        "mean_anomaly_rate": 0.0,
+        "mean_cluster_len": 0.0
+      },
+      "Temperature": {
+        "count": 100,
+        "mean_anomaly_rate": 0.06548458,
+        "mean_cluster_len": 17938.8017
+      },
+      "Valve": {
+        "count": 6,
+        "mean_anomaly_rate": 0.0730235,
+        "mean_cluster_len": 2005.8850000000002
+      }
+    }
+  },
+  "summary": {
+    "physics_compliant": true,
+    "constraint_violations": [],
+    "mean_anomaly_rate_all": 0.04675573165137614,
+    "mean_anomaly_rate_evaluated": 0.07645987878787881,
+    "mean_stickiness": 23840.219774011297,
+    "mean_jump_ratio": 0.013040318721653689,
+    "total_points": 436,
+    "zero_anomaly_points": 82,
+    "high_anomaly_points": 55
+  }
+}
