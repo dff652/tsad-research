@@ -14,7 +14,7 @@ from typing import List, Tuple, Optional, Dict, Any
 import re
 import json
 import time
-from benchmark.lib import patch_transformers # Monkey Patch for transformers 4.54+
+import patch_transformers # Monkey Patch for transformers 4.54+
 
 # Prompt模板缓存
 _prompt_templates_cache: Optional[Dict] = None
@@ -815,7 +815,7 @@ def chatts_detect(
         anomalies: 异常区间详细信息列表（已映射到原始索引）
         position_index: 本次检测所用的降采样位置索引（未降采样时为 np.arange(data_length)）
     """
-    from benchmark.lib.signal_utils import ts_downsample
+    from signal_utils import ts_downsample
     
     # 处理prompt模板：优先使用自定义字符串，否则从配置加载
     if prompt_template is None and prompt_template_name:

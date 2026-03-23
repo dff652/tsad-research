@@ -1,0 +1,52 @@
+{"root.gdsh_second.gdsh_second": {
+      "columns": [
+
+                 "2501FI10009.PV",
+                 "2501FI10034.PV",
+                 "2501LI10001.PV",
+                 "2501TI10028.PV",
+                 "2501TI10036.PV",
+                  "2501FI10002.PV",
+                  "2501FI10004.PV",
+                  "2501FI10014.PV",
+                  "2501FI10018.PV",
+                  "2501FI10049.PV",
+                  "2501PI10032.PV",
+                  "2501LI10012.PV"
+      ],
+      "st": "2023-01-01 00:00:00",
+      "et": "2024-02-01 00:00:00"
+    },
+
+    "root.hbsn.ops.second.hbsn_second": {
+      "columns": [
+        "TT_032111A.PV",
+        "SI_P032101A.PV",
+        "PT_032112D.PV",
+        "FT_032142.PV",
+        "LT_032111B.PV",
+        "FV_032150.OUT",
+        "TT_032112.PV",
+        "PT_032112B.PV",
+        "TT_032107.PV"],
+
+      "st": "2024-01-01 00:00:00",
+      "et": "2024-10-01 00:00:00"
+    },
+    "root.supcon.nb.whlj.LJSJ":{
+        "columns": [
+        "NB.LJSJ.IIZA_2A230A.PV",
+        "NB.LJSJ.DT_2A274A.PV",
+        "NB.LJSJ.EI_2A230A.PV",
+        "NB.LJSJ.LIC_2A340A.PV",
+        "NB.LJSJ.PH_2A150C.PV",
+        "NB.LJSJ.PT_2A233B.PV",
+        "NB.LJSJ.TT_2A234A.PV",
+        "NB.LJSJ.TT_2A213A.PV",
+        "NB.LJSJ.TT_2A213B.PV"
+        ],
+        "st": "2023-06-01 00:00:00",
+        "et": "2024-08-01 00:00:00"
+    } 
+  }
+  

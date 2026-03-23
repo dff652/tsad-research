@@ -1,0 +1,128 @@
+{
+    "global": {
+        "path_iotdb": "all",
+        "task_name": "global",
+        "processing_interval": "7D",
+        "method": "chatts",
+        "n_jobs": 1,
+        "config_file": "test_points_config_gold.json",
+        "downsampler": "m4",
+        "ratio": 0.1,
+        "min_threshold": 500000,
+        "enable_plotting": true,
+        "save_mode": "downsample",
+        "data_path": "/home/share/results/data",
+        "label_path": "/home/share/results/label",
+        "fig_path": "/home/share/results/figs",
+        "manual_label_path": null,
+        "methods": "adtk_hbos, timer",
+        "fig_type": "focus",
+        "run_heatmap": false,
+        "method_params": {
+            "stl_wavelet": {
+                "device": "cpu",
+                "threshold": 8,
+                "num_points": 1200,
+                "ratio_classify": 0.2,
+                "post_filter": "mean",
+                "threshold_filter": 0.5,
+                "use_trend": true,
+                "use_seasonal": false,
+                "use_resid": true,
+                "decompose": true,
+                "insert_missing": true,
+                "use_clustering": false,
+                "clustering_method": "kmeans",
+                "clustering_n_clusters": 2
+            },
+            "adtk_hbos": {
+                "bin_nums": 20,
+                "hbos_ratio": null
+            },
+            "chatts": {
+                "n_downsample": 1024,
+                "chatts_model_path": "/home/share/llm_models/bytedance-research/ChatTS-8B",
+                "chatts_device": "cuda:1",
+                "chatts_use_cache": null,
+                "chatts_lora_adapter_path": "/home/douff/ts/ChatTS-Training/saves/chatts-8b/lora/RTX6000_tune_1024_no_offload_20260105_150157",
+                "chatts_max_new_tokens": 4096,
+                "chatts_prompt_template": "detailed_range_only",
+                "chatts_load_in_4bit": "false"
+            },
+            "timer": {
+                "n_downsample": 10000,
+                "timer_model_path": "/home/share/llm_models/thuml/timer-base-84m",
+                "timer_device": "cuda:1",
+                "timer_lookback_length": 256,
+                "timer_threshold_k": 5,
+                "timer_method": "sigma",
+                "timer_min_run": 1,
+                "timer_streaming": false,
+                "timer_reset_interval": 256
+            }
+        }
+    },
+    "local": {
+        "path_iotdb": "all",
+        "task_name": "local",
+        "processing_interval": "7D",
+        "method": "stl_wavelet",
+        "n_jobs": 12,
+        "config_file": "test_points_config.json",
+        "downsampler": "m4",
+        "ratio": 0.1,
+        "min_threshold": 200000,
+        "enable_plotting": true,
+        "save_mode": "raw",
+        "data_path": "/home/share/results/data",
+        "label_path": "/home/share/results/label",
+        "fig_path": "/home/share/results/figs",
+        "manual_label_path": null,
+        "methods": "stl_wavelet",
+        "fig_type": "focus",
+        "run_heatmap": false,
+        "method_params": {
+            "stl_wavelet": {
+                "device": "cpu",
+                "threshold": 8,
+                "num_points": 1200,
+                "ratio_classify": 0.25,
+                "post_filter": "mean",
+                "threshold_filter": 0.5,
+                "use_trend": true,
+                "use_seasonal": false,
+                "use_resid": true,
+                "decompose": true,
+                "insert_missing": true,
+                "use_clustering": true,
+                "clustering_method": "kmeans",
+                "clustering_n_clusters": 2
+            },
+            "adtk_hbos": {
+                "bin_nums": 20,
+                "hbos_ratio": null
+            },
+            "chatts": {
+                "n_downsample": 768,
+                "chatts_model_path": "/home/share/llm_models/bytedance-research/ChatTS-8B",
+                "chatts_device": "cuda:1",
+                "chatts_use_cache": null,
+                "chatts_lora_adapter_path": "/home/douff/ts/ChatTS-Training/saves/chatts-8b",
+                "chatts_max_new_tokens": 4096,
+                "chatts_prompt_template": "range_only",
+                "chatts_load_in_4bit": "auto"
+            },
+            "timer": {
+                "n_downsample": 10000,
+                "timer_model_path": "/home/share/llm_models/thuml/timer-base-84m",
+                "timer_device": "cuda:0",
+                "timer_lookback_length": 256,
+                "timer_threshold_k": 3.5,
+                "timer_method": "mad",
+                "timer_min_run": 1,
+                "timer_streaming": false,
+                "timer_reset_interval": 256
+            }
+        }
+    }
+}

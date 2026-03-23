@@ -1,0 +1,102 @@
+{"root.gdsh_second.gdsh_second": {
+      "columns": [
+
+                 "2501FI10001.PV",
+                "2501FI10007.PV",
+                "2501FI10011.PV",
+                "2501FI10012.PV",
+                "2501FI10019.PV",
+                "2501FI10021.PV",
+                "2501FI10022.PV",
+                "2501LI10010.PV",
+                "2501PI10028.PV",
+                "2501TI10032.PV",
+                "2501LI10007.PV",
+                "2501TI10088.PV",
+                "2501FI10027.PV",
+                "2501FI10028.PV",
+                "2501PI10056.PV",
+                "2501TI10081.PV",
+                "2501FI10052.PV",
+                "2501LI10009.PV",
+                "2501TI10047.PV"
+
+      ],
+      "st": "2023-01-01 00:00:00",
+      "et": "2024-02-01 00:00:00"
+    },
+
+    "root.hbsn.ops.second.hbsn_second": {
+      "columns": [
+        "HV_032115A.OUT",
+        "HV_032115C.OUT",
+        "PT_032110A.PV",
+        "PT_032110B.PV",
+        "LT_032114A.PV",
+        "LT_032114C.PV",
+        "HV_032103A.OUT",
+        "FV_032115A.OUT",
+        "FV_032115C.OUT",
+        "HV_032103C.OUT",
+        "HV_032104A.OUT",
+        "HV_032104C.OUT",
+        "TT_032103A.PV",
+        "TT_032103C.PV",
+        "HV_032103B.OUT",
+        "HV_032103D.OUT",
+        "TT_P032101A5.PV",
+        "HV_032104B.OUT",
+        "HV_032104D.OUT",
+        "FT_032116A.PV",
+        "TT_032103D.PV",
+        "TT_032103B.PV",
+        "FT_032116B.PV",
+        "FV_032115B.OUT",
+        "FV_032115D.OUT",
+        "FT_032116C.PV",
+        "HV_032115B.OUT",
+        "HV_032115D.OUT",
+        "FT_032116D.PV",
+        "PDT_032118.PV",
+        "AT_032143.PV"
+
+        
+      ],
+
+      "st": "2024-01-01 00:00:00",
+      "et": "2024-10-01 00:00:00"
+    },
+    "root.supcon.nb.whlj.LJSJ":{
+        "columns": [
+        "NB.LJSJ.FIC_2A211A.PV",
+        "NB.LJSJ.FIC_2A211B.PV",
+        "NB.LJSJ.FIC_2A211C.PV",
+        "NB.LJSJ.FIC_2A211D.PV",
+        "NB.LJSJ.FIC_2A211E.PV",
+        "NB.LJSJ.FIC_2A211F.PV",
+        "NB.LJSJ.FIC_2A211G.PV",
+        "NB.LJSJ.FIC_2A211H.PV",
+        "NB.LJSJ.FIC_2A221A.PV",
+        "NB.LJSJ.FIC_2A231A.PV",
+        "NB.LJSJ.FIC_2A231B.PV",
+        "NB.LJSJ.FIC_2A231C.PV",
+        "NB.LJSJ.FIC_2A231D.PV",
+        "NB.LJSJ.FIC_2A231E.PV",
+        "NB.LJSJ.FIC_2A231F.PV",
+        "NB.LJSJ.FIC_2A231G.PV",
+        "NB.LJSJ.FIC_2A231H.PV",
+        "NB.LJSJ.FIC_2A265A.PV",
+        "NB.LJSJ.FIC_2A279A.MV",
+        "NB.LJSJ.PIC_2A216A.MV",
+        "NB.LJSJ.PIC_2A226A.MV",
+        "NB.LJSJ.TT_2A264A.PV",
+        "NB.LJSJ.FT_2A274A.PV",
+        "NB.LJSJ.ORP_2A152.PV",
+        "NB.LJSJ.PT_2A233A.PV"
+
+        ],
+        "st": "2023-06-01 00:00:00",
+        "et": "2024-08-01 00:00:00"
+    } 
+  }
+  

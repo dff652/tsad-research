@@ -1,0 +1,42 @@
+{
+    "default": {
+        "name": "默认精简版",
+        "description": "精简JSON格式，4个核心字段",
+        "template": "我有一个长度为 {ts_len} 的时间序列：<ts><ts/>。请识别该时间序列中所有异常或异常片段。\n\n从全局视角找出具有统计显著性的异常（如极值、突变），忽略正常周期波动。\n\n【输出要求】\n仅输出一个名为 anomalies 的 JSON 数组，不要输出任何其他文字或代码块标记。\n每个元素必须严格包含以下4个字段：\n- range: [起始索引, 结束索引]，整数\n- amp: 异常幅度，保留两位小数\n- label: 简短标签（不超过10字），如\"向下尖峰\"、\"突增\"、\"趋势漂移\"\n- detail: 简短描述（不超过30字）\n\n【格式示例】\nanomalies = [\n    {\"range\": [137, 139], \"amp\": 1.91, \"label\": \"向下尖峰\", \"detail\": \"数值从1.91骤降至0后恢复\"},\n    {\"range\": [500, 520], \"amp\": 5.23, \"label\": \"趋势漂移\", \"detail\": \"整体水平逐渐上升约5.23\"}\n]\n\n注意：必须使用双引号，每个对象的字段顺序为 range、amp、label、detail。"
+    },
+    "detailed": {
+        "name": "详细版（含颜色）",
+        "description": "包含color和extreme字段，输出更详细",
+        "template": "我有一个长度为 {ts_len} 的时间序列：<ts><ts/>。请识别该时间序列中所有异常或异常片段。\n\n对于每个异常，请描述以下内容：\n- 异常发生的索引区间（闭区间，起止索引均为整数）\n- 偏离的幅度或模式特征（保留两位小数）\n- 可能的原因（例如：突然跳变、趋势漂移、异常点、噪声突增等）\n\n从全局数据的视角找出具有明显统计显著性的异常，忽略正常的周期性波动。\n\n【输出要求】\n仅输出一个名为 anomalies 的 JSON 数组（不要输出其它文字、不要加代码块标记）。\n数组中每个元素包含字段：range、amp、label、detail、color、extreme（可选，'min'|'max'|'auto'）。\n\n【格式示例】\nanomalies = [\n    {\"range\": [137, 139], \"amp\": 1.91, \"label\": \"向下尖峰\", \"detail\": \"数值从1.91骤降至0后恢复\", \"color\": \"red\", \"extreme\": \"min\"}\n]"
+    },
+    "english": {
+        "name": "English Version",
+        "description": "English output for international usage",
+        "template": "I have a time series of length {ts_len}: <ts><ts/>. Please identify all anomalies or anomalous segments.\n\nFrom a global perspective, find statistically significant anomalies (e.g., extreme values, sudden changes), ignoring normal periodic fluctuations.\n\n【Output Requirements】\nOutput ONLY a JSON array named anomalies, without any other text or code block markers.\nEach element must strictly contain the following 4 fields:\n- range: [start_index, end_index], integers\n- amp: anomaly amplitude, two decimal places\n- label: short label (max 10 chars), e.g. \"downward spike\", \"surge\", \"trend drift\"\n- detail: brief description (max 50 chars)\n\n【Format Example】\nanomalies = [\n    {\"range\": [137, 139], \"amp\": 1.91, \"label\": \"downward spike\", \"detail\": \"Value drops from 1.91 to 0 then recovers\"}\n]\n\nNote: Use double quotes, field order must be range, amp, label, detail."
+    },
+    "minimal": {
+        "name": "极简版",
+        "description": "只输出range和label，最快速度",
+        "template": "我有一个长度为 {ts_len} 的时间序列：<ts><ts/>。请识别异常区间。\n\n【输出要求】\n仅输出一个名为 anomalies 的 JSON 数组，每个元素只包含2个字段：\n- range: [起始索引, 结束索引]\n- label: 简短标签（如\"尖峰\"、\"突变\"）\n\n【格式示例】\nanomalies = [\n    {\"range\": [137, 139], \"label\": \"向下尖峰\"},\n    {\"range\": [500, 520], \"label\": \"趋势漂移\"}\n]"
+    },
+    "range_only": {
+        "name": "仅区间版",
+        "description": "只输出range字段，最高解析成功率",
+        "template": "我有一个长度为 {ts_len} 的时间序列：<ts><ts/>。请识别所有异常区间。\n\n【输出要求】\n仅输出一个名为 anomalies 的 JSON 数组。\n每个元素只包含1个字段：range，格式为 [起始索引, 结束索引]。\n不要输出任何其他字段或文字。\n\n【格式示例】\nanomalies = [\n    {{\"range\": [137, 139]}},\n    {{\"range\": [500, 520]}}\n]"
+    },
+    "industrial": {
+        "name": "工业场景版",
+        "description": "适用于工业时序数据，关注设备故障模式",
+        "template": "我有一个长度为 {ts_len} 的工业传感器时间序列：<ts><ts/>。请识别该时间序列中的异常区间。\n\n关注以下工业场景常见异常：\n- 设备故障导致的突变或骤降\n- 传感器故障导致的死值（长时间恒定）\n- 系统负载变化导致的趋势漂移\n- 外部干扰导致的尖峰噪声\n- 接近零值的异常（可能是停机或故障）\n\n忽略正常的生产波动和周期性变化。\n\n【输出要求】\n仅输出一个名为 anomalies 的 JSON 数组，每个元素包含：\n- range: [起始索引, 结束索引]\n- amp: 异常幅度\n- label: 异常类型（如\"设备故障\"、\"传感器失效\"、\"负载突变\"）\n- detail: 简短描述\n\n【格式示例】\nanomalies = [\n    {{\"range\": [137, 139], \"amp\": 1.91, \"label\": \"传感器故障\", \"detail\": \"数值骤降至零可能是信号丢失\"}}\n]"
+    },
+    "english_range_only": {
+        "name": "English仅区间版",
+        "description": "英文版只输出range字段，最高解析成功率",
+        "template": "I have a time series of length {ts_len}: <ts><ts/>. Please identify all anomalies or anomalous segments.\n\nFrom a global perspective, find statistically significant anomalies (e.g., extreme values, sudden changes), ignoring normal periodic fluctuations.\n\n【Output Requirements】\nOutput ONLY a JSON array named anomalies, without any other text or code block markers.\nEach element must strictly contain the following fields:\n- range: [start_index, end_index], integers\n\n【Format Example】\nanomalies = [\n    {{\"range\": [137, 139]}}\n]\n\nNote: Use double quotes, field order must be range."
+    },
+    "detailed_range_only": {
+        "name": "详细指导仅区间版",
+        "description": "详细的异常识别指导，但只输出range字段",
+        "template": "我有一个长度为 {ts_len} 的时间序列：<ts><ts/>。请识别该时间序列中所有异常或异常片段。\n\n对于每个异常，请识别以下特征：\n- 异常发生的索引区间（闭区间，起止索引均为整数）\n- 偏离的幅度或模式特征（保留两位小数）\n- 可能的原因（例如：突然跳变、趋势漂移、异常点、噪声突增等）\n\n从全局数据的视角找出具有明显统计显著性的异常（例如接近0的极端值），忽略正常的周期性波动。\n\n【输出要求】\n仅输出一个名为 anomalies 的 JSON 数组。\n每个元素只包含1个字段：range，格式为 [起始索引, 结束索引]。\n不要输出任何其他字段或文字。\n\n【格式示例】\nanomalies = [\n    {{\"range\": [137, 139]}},\n    {{\"range\": [500, 520]}}\n]"
+    }
+}

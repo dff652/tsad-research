@@ -1,0 +1,32 @@
+{
+    "root.gdsh_second.gdsh_second": {
+      "columns": [
+
+                ],
+      "st": "2023-01-01 00:00:00",
+      "et": "2024-02-01 00:00:00"
+    },
+    "root.hbsn.ops.second.hbsn_second": {
+      "columns": [
+          "FT_032142.PV",
+          "AT_032243.PV",
+          "AT_032244.PV",
+          "FT_032214A3.PV",
+          "TT_032111A.PV",
+          "TT_032107.PV",
+          "PT_032112D.PV"
+      ],
+      "st": "2024-01-01 00:00:00",
+      "et": "2024-10-01 00:00:00"
+    },
+    "root.supcon.nb.whlj.LJSJ":{
+        "columns": [
+
+          
+
+                  ],
+        "st": "2023-06-01 00:00:00",
+        "et": "2024-08-01 00:00:00"
+    } 
+  }
+  

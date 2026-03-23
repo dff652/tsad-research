@@ -452,7 +452,7 @@ def timer_detect(
         anomalies: 异常区间详细信息列表（已映射到原始索引）
         position_index: 本次检测所用的降采样位置索引
     """
-    from benchmark.lib.signal_utils import ts_downsample
+    from signal_utils import ts_downsample
     
     # 获取列名和数据
     column = data.columns[0]
