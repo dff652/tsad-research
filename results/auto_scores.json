@@ -23,6 +23,14 @@
     "pass_rate": 0.7373737373737373,
     "good_rate": 0.0
   },
+  "chatts_lora": {
+    "algorithm": "chatts_lora",
+    "scored_points": 99,
+    "mean_predicted_score": 0.46212121212121227,
+    "median_predicted_score": 0.65,
+    "pass_rate": 0.5555555555555556,
+    "good_rate": 0.0
+  },
   "ensemble_cascade": {
     "algorithm": "ensemble_cascade",
     "scored_points": 27,
@@ -151,6 +159,14 @@
     "pass_rate": 0.42424242424242425,
     "good_rate": 0.0
   },
+  "sense": {
+    "algorithm": "sense",
+    "scored_points": 99,
+    "mean_predicted_score": 0.764141414141414,
+    "median_predicted_score": 0.8,
+    "pass_rate": 0.9494949494949495,
+    "good_rate": 0.8787878787878788
+  },
   "sundial": {
     "algorithm": "sundial",
     "scored_points": 4,
@@ -158,6 +174,14 @@
     "median_predicted_score": 0.8,
     "pass_rate": 1.0,
     "good_rate": 0.75
+  },
+  "teacher_student": {
+    "algorithm": "teacher_student",
+    "scored_points": 99,
+    "mean_predicted_score": 0.4707070707070708,
+    "median_predicted_score": 0.5,
+    "pass_rate": 0.8181818181818182,
+    "good_rate": 0.0
   },
   "timer": {
     "algorithm": "timer",
@@ -206,6 +230,22 @@
     "median_predicted_score": 0.8,
     "pass_rate": 0.8,
     "good_rate": 0.8
+  },
+  "ts2vec": {
+    "algorithm": "ts2vec",
+    "scored_points": 99,
+    "mean_predicted_score": 0.4500000000000002,
+    "median_predicted_score": 0.45,
+    "pass_rate": 0.0,
+    "good_rate": 0.0
+  },
+  "ts2vec_mad": {
+    "algorithm": "ts2vec_mad",
+    "scored_points": 99,
+    "mean_predicted_score": 0.5,
+    "median_predicted_score": 0.5,
+    "pass_rate": 1.0,
+    "good_rate": 0.0
   },
   "wavelet": {
     "algorithm": "wavelet",

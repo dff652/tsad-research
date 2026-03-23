@@ -1,4 +1,4 @@
-# Data & ML
+# ===== 数据文件 =====
 data/*
 !data/.gitkeep
 !data/cleaned/evaluated_points.txt
@@ -6,11 +6,8 @@ data/*
 *.csv
 *.xlsx
 *.xlsm
-# 保留文档区和轻量级结果
-!results/model_ranking.md
-!results/comprehensive_evaluation_report.json
 
-# Large binary files
+# ===== 大型二进制文件 =====
 *.pth
 *.bin
 *.safetensors
@@ -18,12 +15,33 @@ data/*
 *.log
 *.jsonl
 
-# Keys and Secrets
+# ===== 结果文件 =====
+# 默认忽略 predictions 下的大量推理结果
+results/predictions/
+results/batch_*.jsonl
+# 保留轻量级 JSON 报告（强制 add 过的会继续跟踪）
+
+# ===== 第三方代码仓库 =====
+catch/
+ts2vec/
+
+# ===== 模型权重/输出 =====
+qwen/lora_output/
+qwen/images/
+qwen/dataset/
+results/ts2vec_model
+results/gaf_convae_model.pth
+
+# ===== 敏感配置（含 IP/密码） =====
+benchmark/lib/configs/*_config*.json
+benchmark/lib/configs/*_points_*.json
+
+# ===== 密钥 =====
 .env
 .env.*
 secret*
 
-# Python
+# ===== Python =====
 __pycache__/
 *.py[cod]
 *$py.class
@@ -44,11 +62,12 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-# 例外：benchmark/lib 是核心代码，不是依赖库
+
+# 例外：benchmark/lib 是核心代码
 !benchmark/lib/
 !benchmark/lib/**
 
-# Virtual environments
+# ===== 虚拟环境 =====
 venv/
 venv.bak/
 ENV/
@@ -56,16 +75,8 @@ env/
 .conda
 .venv
 
-# IDE / Editor
+# ===== IDE =====
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# LoRA / Model outputs
-qwen/lora_output/
-qwen/images/
-qwen/dataset/
-
-*.json
-*.jsonl 
