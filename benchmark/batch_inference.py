@@ -23,6 +23,7 @@ import sys
 import time
 from pathlib import Path
 from datetime import datetime
+from experiment_log import ExperimentLogger
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 BENCHMARK_DIR = Path(__file__).resolve().parent
@@ -45,10 +46,19 @@ def get_point_names(mode: str) -> list:
     """获取点位列表"""
     if mode == "evaluated":
         points_file = PROJECT_ROOT / "data/cleaned/evaluated_points.txt"
+        if not points_file.exists():
+            print(f"错误: 评分点位文件不存在 {points_file}")
+            return []
         with open(points_file) as f:
-            return [line.strip() for line in f if line.strip()]
+            points = [line.strip() for line in f if line.strip()]
+        if not points:
+            print(f"错误: 评分点位文件为空 {points_file}")
+        return points
     elif mode == "all":
         data_dir = PROJECT_ROOT / "data/adtk_hbos_old"
+        if not data_dir.exists():
+            print(f"错误: 数据目录不存在 {data_dir}")
+            return []
         names = []
         for f in sorted(data_dir.glob("*.csv")):
             m = re.match(
@@ -56,6 +66,8 @@ def get_point_names(mode: str) -> list:
                 f.name)
             if m:
                 names.append(m.group(1))
+        if not names:
+            print(f"错误: 数据目录中无匹配的 CSV 文件（文件名格式不匹配）")
         return names
     else:
         return mode.split(",")
@@ -133,6 +145,9 @@ def main():
     args = parser.parse_args()
 
     points = get_point_names(args.points)
+    if not points:
+        print("中止: 无可用点位（数据文件缺失或为空）")
+        sys.exit(1)
     print(f"算法: {args.algo}, 点位数: {len(points)}, 模式: {args.points}")
 
     # 断点续跑：跳过已有结果
@@ -172,14 +187,39 @@ def main():
     print(f"批量推理完成: {args.algo}")
     print(f"  成功: {success}/{len(points)}")
     print(f"  失败: {errors}/{len(points)}")
+
+    # 记录到统一实验日志
+    logger = ExperimentLogger()
     if results:
         success_results = [r for r in results if r["status"] == "success"]
         if success_results:
             rates = [r.get("anomaly_rate", 0) for r in success_results]
             times = [r.get("elapsed", 0) for r in success_results]
-            print(f"  平均异常率: {sum(rates)/len(rates):.4f}")
-            print(f"  平均耗时: {sum(times)/len(times):.1f}s")
+            mean_rate = sum(rates) / len(rates)
+            mean_time = sum(times) / len(times)
+            print(f"  平均异常率: {mean_rate:.4f}")
+            print(f"  平均耗时: {mean_time:.1f}s")
             print(f"  总耗时: {sum(times)/60:.1f}min")
+
+            logger.log(
+                algorithm=args.algo,
+                config_tag=f"batch_{args.points}",
+                score=0.0,  # 批量推理阶段无评分，后续 auto_scorer 会补充
+                anomaly_rate=mean_rate,
+                elapsed=sum(times),
+                status="keep",
+                description=f"batch inference: {success}/{len(points)} points, mode={args.points}",
+            )
+        else:
+            logger.log(
+                algorithm=args.algo,
+                config_tag=f"batch_{args.points}",
+                score=0.0,
+                anomaly_rate=0.0,
+                elapsed=0.0,
+                status="error",
+                description=f"batch inference: all {len(points)} points failed",
+            )
     print(f"日志: {log_path}")
 
 

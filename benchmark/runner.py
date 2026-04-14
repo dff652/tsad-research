@@ -24,6 +24,7 @@ import time
 import yaml
 from pathlib import Path
 from datetime import datetime
+from experiment_log import ExperimentLogger
 
 # 项目根目录
 BENCHMARK_DIR = Path(__file__).resolve().parent
@@ -112,10 +113,22 @@ def run_precomputed_adapter(algo_key: str, algo_cfg: dict, config: dict) -> dict
     import re as _re
 
     data_dir = resolve_path(config["data"]["adtk_hbos_precomputed"])
+
+    # 防护：数据目录不存在或为空
+    if not os.path.isdir(data_dir):
+        print(f"  [{algo_key}] 错误: 数据目录不存在 {data_dir}")
+        return {"total": 0, "success": 0, "errors": 0, "error": f"数据目录不存在: {data_dir}"}
+    if not glob.glob(os.path.join(data_dir, "*.csv")):
+        print(f"  [{algo_key}] 错误: 数据目录为空（无 CSV 文件）{data_dir}")
+        return {"total": 0, "success": 0, "errors": 0, "error": f"数据目录为空: {data_dir}"}
+
     pred_dir = resolve_path(config["output"]["predictions_dir"]) + f"/{algo_key}"
     os.makedirs(pred_dir, exist_ok=True)
 
     point_names = get_point_names_from_precomputed(data_dir)
+    if not point_names:
+        print(f"  [{algo_key}] 错误: 未从文件名中解析出任何点位（文件名格式不匹配）")
+        return {"total": 0, "success": 0, "errors": 0, "error": "点位名解析失败"}
     print(f"  [{algo_key}] 发现 {len(point_names)} 个预计算点位，批量转换中...")
 
     import pandas as pd
@@ -172,6 +185,17 @@ def run_algorithm(algo_key: str, algo_cfg: dict, config: dict) -> dict:
     print(f"  类型: {algo_cfg['type']}")
     print(f"{'='*60}")
 
+    # 防护：GPU 算法检查适配器脚本是否存在
+    if not algo_cfg.get("precomputed"):
+        adapter_path = resolve_path(algo_cfg["adapter"])
+        if not os.path.isfile(adapter_path):
+            print(f"  [{algo_key}] 错误: 适配器脚本不存在 {adapter_path}")
+            return {"total": 0, "success": 0, "error": f"适配器不存在: {adapter_path}"}
+
+        model_path = algo_cfg.get("model_path")
+        if model_path and not os.path.exists(model_path):
+            print(f"  [{algo_key}] 警告: 模型路径不存在 {model_path}，推理可能失败")
+
     start = time.time()
 
     if algo_cfg.get("precomputed"):
@@ -188,6 +212,13 @@ def run_algorithm(algo_key: str, algo_cfg: dict, config: dict) -> dict:
 
 def run_evaluation(config: dict, algo_keys: list = None):
     """运行评估 —— 基于预提取特征文件，无需读取 46GB 原始 CSV"""
+    # 防护：检查评估所需的关键数据文件
+    for key in ("all_features", "scores_csv", "evaluated_points"):
+        path = resolve_path(config["data"][key])
+        if not os.path.isfile(path):
+            print(f"评估中止: 缺少关键数据文件 {key} -> {path}")
+            return {}
+
     sys.path.insert(0, str(BENCHMARK_DIR))
     from evaluator import BenchmarkEvaluator
 
@@ -259,13 +290,28 @@ def main():
     else:
         algo_keys = list(config["algorithms"].keys())
 
+    logger = ExperimentLogger()
+
     if not args.eval_only:
         # 运行推理
         for algo_key in algo_keys:
             if algo_key not in config["algorithms"]:
                 print(f"未知算法: {algo_key}")
                 continue
-            run_algorithm(algo_key, config["algorithms"][algo_key], config)
+            result = run_algorithm(algo_key, config["algorithms"][algo_key], config)
+            # 记录到统一实验日志
+            status = "keep" if result.get("success", 0) > 0 else "error"
+            if result.get("skipped"):
+                status = "discard"
+            logger.log(
+                algorithm=algo_key,
+                config_tag="runner_inference",
+                score=0.0,
+                anomaly_rate=0.0,
+                elapsed=result.get("elapsed_total", 0),
+                status=status,
+                description=f"inference: {result.get('success', 0)}/{result.get('total', 0)} points",
+            )
 
     # 运行评估
     print("\n" + "="*60)
